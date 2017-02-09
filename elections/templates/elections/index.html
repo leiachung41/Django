@@ -1,0 +1,30 @@
+{% extends "elections/layout.html" %}
+{%  block title %}
+US ELECTIONS
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td><B>NAME</B></td>
+            <td><B>INTRO</B></td>
+            <td><B>AREA</B></td>
+            <td><B>NO</B></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for candidate in candidates %}
+        <tr>
+            <td> {{ candidate.name }} </td>
+            <td> {{ candidate.introduction }} </td>
+            <td> <a href = "areas/{{ candidate.area }}/">
+                {{ candidate.area }} </a> </td>
+            <td> no {{ candidate.party_number }} </td>
+        </tr>
+        {% endfor %}
+        <!-- 여기까지 -->
+        <tbody>
+    </table>
+{% endblock %}

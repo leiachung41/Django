@@ -1,0 +1,40 @@
+{% extends "elections/layout.html" %}
+{%  block title %}
+{{ area }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<h1>{{ area }}</h1>
+<br>
+{% if poll %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td><B>NAME</B></td>
+            <td><B>INTRO</B></td>
+            <td><B>NO</B></td>
+            <td><B>SUPPORT</B></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for candidate in candidates %}
+        <tr>
+            <td> {{candidate.name}}</td>
+            <td> {{candidate.introduction}}</td>
+            <td> no{{candidate.party_number}} </td>
+            <td>
+                <form action = "/polls/{{poll.id}}/" method = "post">
+                {% csrf_token %}
+                    <button name="choice" value="{{candidate.id}}">SELECT</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        <tbody>
+    </table>
+{% else %}
+There is no poll today.
+{% endif %}
+</div>
+{% endblock %}
